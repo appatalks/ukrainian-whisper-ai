@@ -1,4 +1,4 @@
-# whisper-ai 
+# ukrainian-whisper-ai 
 ## OpenAI Audio Transcription and Translation Script
 
 > [!IMPORTANT] 
