@@ -33,10 +33,10 @@ if [ "$file_size" -le "$max_size" ]; then
     perform_api_call "$file_path"
 else
     # File exceeds the size limit, split and call API for each part
-    mkdir -p temp_audio_parts
-    ffmpeg -i "$file_path" -f segment -segment_time 300 -c copy temp_audio_parts/out%03d.mp3
+    mkdir -p /tmp/temp_audio_parts
+    ffmpeg -i "$file_path" -f segment -segment_time 300 -c copy /tmp/temp_audio_parts/out%03d.mp3
     
-    for part in temp_audio_parts/*.mp3; do
+    for part in /tmp/temp_audio_parts/*.mp3; do
         perform_api_call "$part"
     done
 fi
