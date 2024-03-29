@@ -29,18 +29,6 @@ perform_transcribe_call() {
 	 -o $file_out
 }
 
-#if [ "$file_size" -le "$max_size" ]; then
-#    # File is within the size limit, perform API call
-#    perform_transcribe_call "$file_path"
-#else
-#    mkdir -p /tmp/temp_audio_parts
-#    ffmpeg -i "$file_path" -f segment -segment_time 300 -c copy /tmp/temp_audio_parts/out%03d.mp3
-#    
-#    for part in /tmp/temp_audio_parts/*.mp3; do
-#        perform_transcribe_call "$part"
-#    done
-#fi
-
 # Function to append AI generated English translation of Ukrainian text.
 perform_translation_call() {
     local temp_json=$(mktemp)
