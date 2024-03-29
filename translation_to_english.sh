@@ -2,7 +2,7 @@
 
 # Configuration
 file_path=$1
-file_out=/tmp/"$(date +%Y%m%d%H%M)_ENG_translation.srt"
+file_out=/tmp/"$(date +%Y%m%d%H%M)_ENG_Subtitles.srt"
 base_url="https://api.openai.com/v1/audio/translations"
 
 # Prompt for API key
