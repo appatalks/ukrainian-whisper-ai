@@ -2,14 +2,14 @@
 ## OpenAI Audio Transcription and Translation Script
 
 > [!IMPORTANT] 
-> Transcribe Ukrainian with translation to English text to SRT format. OpenAI transcription API Endpoint
+> Transcribe Ukrainian with translation to English text to SRT format. OpenAI transcription/translation API Endpoints
 
-Leverages the OpenAI API to transcribe audio files and translate the transcriptions into English. Initially, it transcribes audio using OpenAI's Whisper model, specifically targeting Ukrainian language audio for transcription. Following transcription, the script employs OpenAI's GPT model to append English translations to the SRT (SubRip subtitle) file generated from the transcription process. This tool is designed to handle audio files directly, manage file size constraints by splitting large files, and process both the transcription and translation phases automatically.
+Leverages the OpenAI API to transcribe audio files and translate the transcriptions into English and Ukrainian SRT (SubRip subtitle) files. Using OpenAI's Whisper model, specifically targets Ukrainian language audio for transcription. This tool is designed to handle audio files directly, manage file size constraints by splitting large files, and process both the transcription and translation phases automatically.
 
 ## Features
 
-- **Transcription**: Converts audio to text using the Whisper model, with a focus on Ukrainian audio content.
-- **Translation**: Appends English translations to the SRT file, ensuring that both the original Ukrainian text and its English translation are included.
+- **transcribe_ukrainian.sh**: Converts audio to text using the Whisper model, with a focus on Ukrainian audio content.
+- **translation_to_english.sh**: Translates audio to English text using the Whisper model. 
 - **File Size Management**: Splits files larger than 25MB into smaller segments to comply with API limitations.
 - **Automated Workflow**: From a single audio file input, produces an SRT file containing both transcribed and translated text.
 
