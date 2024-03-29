@@ -3,7 +3,7 @@
 # Configuration
 file_path=$1
 transcribe_url="https://api.openai.com/v1/audio/transcriptions"
-file_out=/tmp/"$(date +%Y%m%d%H%M)_UK_subtitles.crt"
+file_out=/tmp/"$(date +%Y%m%d%H%M)_UK_subtitles.srt"
 
 # Prompt for API key
 read -sp "Enter your OpenAI API key: " api_key
