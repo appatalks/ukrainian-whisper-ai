@@ -2,8 +2,9 @@
 
 # Configuration
 file_path=$1
+transcribe_url="https://api.openai.com/v1/audio/transcriptions"
 mkdir -p tmp
-base_url="https://api.openai.com/v1/audio/translations"
+file_out=tmp/"$(date +%Y%m%d%H%M)_RU_subtitles.srt"
 
 # Authentication
 auth() {
@@ -26,9 +27,10 @@ perform_api_call() {
          --header 'Content-Type: multipart/form-data' \
          --form file=@"$part_path" \
          --form model=whisper-1 \
+	 -F language="ru" \
          -F response_format="srt" \
          -o "$part_out"
-    echo "SRT English Output to: $part_out"
+    echo "SRT Russian Lanugage Output to: $part_out"
 }
 
 # Function to shift SRT timestamps
@@ -59,12 +61,12 @@ shift_srt_timestamps() {
     mv "$temp_file" "$srt_file"
 }
 
-combined_srt="tmp/combined_$(date +%Y%m%d%H%M%S)_ENG_Subtitles.srt"
+combined_srt="tmp/combined_$(date +%Y%m%d%H%M%S)_RU_Subtitles.srt"
 touch "$combined_srt"
 
 if [ "$file_size" -le "$max_size" ]; then
     # File is within the size limit, perform API call
-    part_out="tmp/$(date +%Y%m%d%H%M%S)_ENG_Subtitles.srt"
+    part_out="tmp/$(date +%Y%m%d%H%M%S)_RU_Subtitles.srt"
     perform_api_call "$file_path" "$part_out"
     cat "$part_out" >> "$combined_srt"
 else
@@ -77,11 +79,11 @@ else
     for (( segment=0; segment<$total_segments; segment++ )); do
         start_time=$(echo "$segment * $segment_time" | bc)
         part_path="/tmp/temp_audio_parts/out${segment}.mp3"
-        part_out="tmp/$(date +%Y%m%d%H%M%S)_ENG_Subtitles_part${segment}.srt"
+        part_out="tmp/$(date +%Y%m%d%H%M%S)_RU_Subtitles_part${segment}.srt"
         ffmpeg -i "$file_path" -ss $start_time -t $segment_time -c copy "$part_path"
 
         if [ -f "$part_path" ]; then
-            echo "Performing API Call on segment ${segment}"    
+            echo "Performing API Call on segment ${segment}"
             perform_api_call "$part_path" "$part_out"
 
             # Adjust the SRT timestamps for the combined SRT file
