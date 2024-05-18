@@ -4,6 +4,7 @@
 # Usage: $ python sub_magic.py in.srt
 
 import pysrt
+from datetime import datetime
 
 # Load the subtitles from a file
 subs = pysrt.open('in.srt')
